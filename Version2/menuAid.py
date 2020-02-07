@@ -67,3 +67,18 @@ class Text(Element):
     self.font = pygame.font.SysFont(self.fontName, self.size)
     self.renderedText = self.font.render(self.text, True, self.colour)
 
+class Rect(Element):
+
+  def __init__(self, x, y, width, height, colour):
+    super().__init__(x, y, width, height)
+    self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+    self.colour = colour
+
+class OutlineRect(Rect):
+  def draw(self, screen):
+    pygame.draw.rect(screen, self.colour, self.rect, 2)
+
+class FilledRect(Rect):  
+  def draw(self, screen):
+    pygame.draw.rect(screen, self.colour, self.rect, 0)
+
